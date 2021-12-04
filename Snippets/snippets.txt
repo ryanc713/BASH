@@ -141,3 +141,16 @@ sort FILENAME.txt | uniq --unique>>NEWFILENAME.txt
 TAR ARCHIVE FROM LIST.TXT
 -----------------------------------------------------------------------------------------------------
 tar -czvf ARCHIVE_NAME.tar.gz -T TXT_FILE_WITH_DIRECTORY_LIST
+
+
+-----------------------------------------------------------------------------------------------------
+LOOP OVER A QUESTION UNTIL THE CORRECT ANSWER IS PROVIDED
+-----------------------------------------------------------------------------------------------------
+echo "Enter the Path to the directory you want to password protect:"
+    read web_dir
+    while [ ! -d "$web_dir" ] ; do
+        echo "The path you entered, $web_dir, could not be found. Check the spelling and try again."
+        sleep 5
+        echo "Enter the Path to the Directory you want to password protect:"
+        read web_dir
+    done
