@@ -154,3 +154,12 @@ echo "Enter the Path to the directory you want to password protect:"
         echo "Enter the Path to the Directory you want to password protect:"
         read web_dir
     done
+-----------------------------------------------------------------------------------------------------
+LIST ALL NON-BUILT IN USERS
+-----------------------------------------------------------------------------------------------------
+awk -F: '$3 >= 1000 {print $1}' /etc/passwd
+
+-----------------------------------------------------------------------------------------------------
+LIST ONLY USERNAMES FROM /etc/passwd FILE
+-----------------------------------------------------------------------------------------------------
+cut -d: -f1 /etc/passwd
