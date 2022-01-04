@@ -133,14 +133,14 @@ TESTING FOR AN IP ADDRESS USING REGEX
 echo $IP | grep -Ps ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$
 
 -----------------------------------------------------------------------------------------------------
-REMOVE DUPLICATE LINES FROM TEXT
+REMOVE DUPLICATE LINES FROM TEXT FILE
 -----------------------------------------------------------------------------------------------------
-sort FILENAME.txt | uniq --unique>>NEWFILENAME.txt
+awk '!seen[$0]++' FILENAME
 
 -----------------------------------------------------------------------------------------------------
 TAR ARCHIVE FROM LIST.TXT
 -----------------------------------------------------------------------------------------------------
-tar -czvf ARCHIVE_NAME.tar.gz -T TXT_FILE_WITH_DIRECTORY_LIST
+tar -czvf ARCHIVE_NAME.tar.gz -T DIRECTORY_LIST.txt
 
 
 -----------------------------------------------------------------------------------------------------
