@@ -1,0 +1,50 @@
+IF STATEMENT WITH HEREDOC KEEP INDENTATIONS
+--------------------------------------------
+if cond; then
+    cat <<- EOF
+    hello
+    there
+    EOF
+fi
+
+IF STATEMENT WITH HEREDOC
+--------------------------
+if cond; then
+ cat << EOF
+hello
+there
+EOF
+fi
+
+CREATE A FILE WITH CONTENTS OF HEREDOC
+--------------------------------------
+cat > fruits.txt << EOF
+apple
+orange
+lemon
+EOF
+
+EXECUTE COMMAND WITH HEREDOC
+-----------------------------
+ssh -p 21 example@example.com <<EOF
+ echo 'printing pwd'
+ echo "\$(pwd)"
+ ls -a
+ find '*.txt'
+EOF
+
+RUN SEVERAL COMMANDS WITH SUDO
+------------------------------
+sudo -s <<EOF
+ a='var'
+ echo 'Running serveral commands with sudo'
+ mktemp -d
+ echo "\$a"
+EOF
+
+sudo -s <<'EOF'
+ a='var'
+ echo 'Running serveral commands with sudo'
+ mktemp -d
+ echo "$a"
+EOF
