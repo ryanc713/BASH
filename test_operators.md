@@ -1,3 +1,5 @@
+# BASH TEST OPERATORS
+
 | FILE OPERATORS | DETAILS                                                   |
 |----------------|-----------------------------------------------------------|
 | `-e "$FILE"`   | Returns true if the file exists.                          |
