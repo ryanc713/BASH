@@ -1,3 +1,8 @@
+# BASH GETOPTS EXAMPLE
+
+<br>
+
+````bash
 while getopts ae:f:hd:s:qx: option
 do
         case "${option}"
@@ -13,3 +18,4 @@ do
                     exit 1;;
         esac
 done
+````
