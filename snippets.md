@@ -208,3 +208,13 @@ cut -d: -f1 /etc/passwd
 ````bash
 wc -l FILENAME.txt | awk '{ print $1 }'
 ````
+
+<br>
+
+| READ A FILE LINE BY LINE |
+|--------------------------|
+````bash
+while read -r line; do
+// Commands here
+done<INPUT_FILE.txt
+````
