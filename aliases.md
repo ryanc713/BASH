@@ -1,6 +1,4 @@
-# Useful BASH Aliases
-
-![Bash_Aliases](https://github.com/ryanc410/BASH/bash_aliases.png)
+![Bash_Aliases](https://github.com/ryanc410/BASH/blob/main/bash_aliases.png)
 
 **Table of Contents**
 1. <a href="#navigating">Navigating Directories</a>
