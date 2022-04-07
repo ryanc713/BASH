@@ -1,89 +1,152 @@
-# USEFUL BASH ALIASES
-<br>
+# Useful BASH Aliases
 
-| Generate random 20 character password |
-|---------------------------------------|
-````bash
-alias getpass='openssl rand -base64 20'
-````
-<br>
+![Bash_Aliases](https://github.com/ryanc410/BASH/bash_aliases.png)
 
-| External IP Address using curl |
-|--------------------------------|
-````bash
-alias ipe='curl ipinfo.io/ip'
-````
-<br>
+**Table of Contents**
+1. <a href="#navigating">Navigating Directories</a>
+2. <a href="#custom">Custom Commands</a>
+3. <a href="#extras">Extras</a>
 
-| Clear the Screen |
-|------------------|
-````bash
-alias c='clear'
-````
-<br>
+---
 
-| Sudo |
-|------|
-````bash
-alias s='sudo'
-````
+<h1 id="navigating"> Navigating Directories</h1>
 
-<br>
+## **Moving back x number of directories**
+>These aliases make it easier to move up a folder tree.
 
-| Show Date |
-|-----------|
-````bash
-alias now='date +%B.%d.%Y
-````
-
-<br>
-
-| Navigate back Directories |
-|---------------------------|
+## **Go back one directory**
 ````bash
 alias b1='cd ../'
+````
+
+## **Go back two directories**
+````bash
 alias b2='cd ../../'
+````
+
+## **Go back three directories**
+````bash
 alias b3='cd ../../../'
+````
+
+## **Go back four directories**
+````bash
 alias b4='cd ../../../../'
 ````
 
+# **Shortcuts**
+>Aliases that navigate to specific directories
+
 <br>
 
-| Navigate to Web Root Directory |
-|--------------------------------|
+## **Navigate to web root directory**
 ````bash
 alias web='cd /var/www/html'
 ````
 
-<br>
-
-| Navigate to  Apache's Virtual Host Directory |
-|----------------------------------------------|
+## **Navigate to Apache's Virtual Host directory**
 ````bash
-alias vhost='cd /etc/apache2/sites-available'
+alias vhosts='cd /etc/apache2/sites-available'
 ````
 
-<br>
+---
 
-| Update Server                                                      |
-|--------------------------------------------------------------------|
-````bash
-alias update='apt update && apt upgrade -y
-````
+<h1 id="custom">Custom Commands</h1>
+
+>All of these aliases require atleast one argument provided when executing.
 
 <br>
 
-| Extract Tar Archive |
-|---------------------|
+## **Easy Install command.**
+>Provide one or more app names to install. If more than one, separate using one whitespace character.
 ````bash
-alias extract="tar -xvf $1"
+alias install="sudo apt install $1 -y"
 ````
 
-<br>
-
-| Create Backup Using Tar |
-|-------------------------|
-**Alias takes two arguments the first is the name of the Backup File and the second is what you want to backup.**
+## **Simple enable command**
+>Enables the app to run at boot.
 ````bash
-alias backup='tar -cjf $1.tar.bz2 $2'
+alias enable="sudo systemctl enable $1"
 ````
+
+## **Simple Start command**
+>Starts the app
+````bash
+alias start="sudo systemctl start $1"
+````
+## **Restart $1**
+>Restarts the provided app.
+````bash
+alias restart="sudo systemctl restart $1"
+````
+
+## **Status Check**
+>Provide the name of the app you want to check the status of as an argument.
+````bash
+alias status="sudo systemctl status $1"
+````
+## **Generate x length Password**
+>The argument provided during execution is the desired length of the generated password.
+````bash
+alias genpass="openssl rand -base64 $1"
+````
+
+---
+
+<h1 id="extras">Extras</h1>
+
+## **Update**
+>Update repositories and upgrade apps as needed
+````bash
+alias update='sudo apt update && sudo apt upgrade -y'
+````
+
+## **Date**
+>Show current date and time
+````bash
+alias now='date +%b.%d.%Y-%I:%M%p'
+````
+
+## **External IP**
+>Print your public IP address using curl
+````bash
+alias eip='curl ipinfo.io/ip'
+````
+
+## **Extract**
+>Extract a tar.gz archive
+````bash
+alias extract="tar -xf $1.tar.gz"
+````
+
+## **Create Backup**
+>First argument is the desired name of the backup, omitting the file extension, and the second is the files/directories you want to backup.,
+````bash
+alias backup="tar -cfj $1.tar.bz2 $2"
+````
+
+## **Encrypt**
+>Use gpg to encrypt a file using a passphrase.
+````bash
+alias encrypt="gpg -c $1"
+````
+
+## **Decrypt**
+>Use gpg to decrypt a file providing a passphrase.
+````bash
+alias decrypt="gpg -d $1"
+````
+
+## **Sudo**
+>For if you get tired of typing out sudo every command.
+````bash
+alias s='sudo'
+````
+
+## **Clear the Screen**
+````bash
+alias c='clear'
+````
+
+---
+
