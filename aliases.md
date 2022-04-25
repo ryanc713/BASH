@@ -1,11 +1,25 @@
 ![Bash_Aliases](https://github.com/ryanc410/BASH/blob/main/bash_aliases.png)
 
 **Table of Contents**
-1. <a href="#navigating">Navigating Directories</a>
-2. <a href="#custom">Custom Commands</a>
-3. <a href="#extras">Extras</a>
+1. <a href="#howto">How to Congfigure Aliases</a>
+2. <a href="#navigating">Navigating Directories</a>
+3. <a href="#custom">Custom Commands</a>
+4. <a href="#extras">Extras</a>
 
 ---
+
+<h1 id="howto">How to Configure Aliases in BASH</h1>
+To configure BASH to recognize your aliases is extremely easy. When the shell starts, it reads a few files before actually starting, and one of these files is your `.bashrc` file. Near the end of this file you should notice an if statement that tells the shell that if the `.bash_aliases` file exists in the home directory, to source it into the shell. If you dont find this statement in your `.bashrc` file, this is what it should look like:
+
+````bash
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+````
+
+Next, inside your home directory you can do something like `touch .bash_aliases` or `nano .bash_aliases` and add your aliases in this file. After you are done adding them you must logout and log back in for the shell to read this file. Or you can run `newgrp` and then you can use your aliases.
+
+# Alias Examples
 
 <h1 id="navigating"> Navigating Directories</h1>
 
