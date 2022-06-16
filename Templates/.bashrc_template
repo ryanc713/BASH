@@ -1,0 +1,121 @@
+#===============================================================
+# PERSONAL $HOME/.bashrc FILE for bash-2.05a (or later)
+#
+# Last modified: Tue Apr 15 20:32:34 CEST 2003
+#===============================================================
+#-----------------------------------
+# Source global definitions (if any)
+#-----------------------------------
+
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc   # --> Read /etc/bashrc, if present.
+fi
+
+#-----------------------
+# Greeting, motd etc...
+#-----------------------
+
+# Define some colors first:
+red='\e[0;31m'
+RED='\e[1;31m'
+blue='\e[0;34m'
+BLUE='\e[1;34m'
+cyan='\e[0;36m'
+CYAN='\e[1;36m'
+NC='\e[0m'              # No Color
+# --> Nice. Has the same effect as using "ansi.sys" in DOS.
+
+# Looks best on a black background.....
+echo -e "${CYAN}This is BASH ${RED}${BASH_VERSION%.*}${CYAN} - DISPLAY on ${RED}$DISPLAY${NC}\n"
+date
+
+#---------------
+# Shell Prompt
+#---------------
+
+export HOST="$domain"
+
+HILIT=${cyan}  # local machine: prompt will be partly cyan
+
+function fastprompt()
+{
+    unset PROMPT_COMMAND
+    case $TERM in
+        *term | rxvt )
+            PS1="${HILIT}[\h]$NC \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
+	linux )
+	    PS1="${HILIT}[\h]$NC \W > " ;;
+        *)
+            PS1="[\h] \W > " ;;
+    esac
+}
+
+function powerprompt()
+{
+    _powerprompt()
+    {
+        LOAD=$(uptime|sed -e "s/.*: \([^,]*\).*/\1/" -e "s/ //g")
+    }
+
+    PROMPT_COMMAND=_powerprompt
+    case $TERM in
+        *term | rxvt  )
+            PS1="${HILIT}[\A \$LOAD]$NC\n[\h \#] \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
+        linux )
+            PS1="${HILIT}[\A - \$LOAD]$NC\n[\h \#] \w > " ;;
+        * )
+            PS1="[\A - \$LOAD]\n[\h \#] \w > " ;;
+    esac
+}
+
+powerprompt 
+
+#===============================================================
+#
+# ALIASES AND FUNCTIONS
+#
+#===============================================================
+
+alias s='sudo'
+alias c='clear'
+
+alias update='sudo apt update && sudo apt upgrade -y'
+
+alias web='cd /var/www/html'
+alias inc='cd /var/includes'
+alias vhosts='cd /etc/apache2/sites-available'
+alias ssl='cd /etc/ssl'
+
+export domain=$(hostname -f)
+export ip=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+
+alias h='history'
+alias j='jobs -l'
+alias r='rlogin'
+alias which='type -all'
+alias ..='cd ..'
+alias path='echo -e ${PATH//:/\\n}'
+alias print='/usr/bin/lp -o nobanner -d $LPDEST'   # Assumes LPDEST is defined
+alias pjet='enscript -h -G -fCourier9 -d $LPDEST'  # Pretty-print using enscript
+alias background='xv -root -quit -max -rmode 5'    # Put a picture in the background
+alias du='du -kh'
+alias df='df -kTh'
+
+function install(){
+      sudo apt install "$1" -y
+}
+function enable(){
+      sudo systemctl enable "$1"
+}
+function restart(){
+      sudo systemctl restart "$1"
+}
+
+if [ -f ~/.bash_aliases ]; then
+      . ~/.bash_aliases
+fi
