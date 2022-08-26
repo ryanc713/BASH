@@ -312,3 +312,21 @@ while read -r line; do
 // Commands here
 done<INPUT_FILE.txt
 ````
+
+# Store the Output of command into an Array
+
+<br>
+
+````bash
+readarray -t ARRAY_NAME < <(COMMAND_HERE)
+````
+
+EXAMPLE:
+
+<br>
+
+````bash
+root@host:~/# readarray -t enabled < <(ls /etc/apache2/sites-enabled)
+root@host:~/# echo "${enabled[@]}"
+000-default.conf
+````
