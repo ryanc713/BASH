@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "editor.defaultFormatter": "shakram02.bash-beautify",
+  "editor.fontFamily": "'Jetbrains', monospace",
+  "editor.wordWrap": "on",
+  "workbench.colorTheme": "bashling"
+}

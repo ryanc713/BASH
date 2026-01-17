@@ -12,6 +12,8 @@
 
 Include /etc/ssh/sshd_config.d/*.conf
 
+# Change the default port number for ssh
+Port 2112
 #Port 22
 #AddressFamily any
 #ListenAddress 0.0.0.0
@@ -31,8 +33,13 @@ Include /etc/ssh/sshd_config.d/*.conf
 # Authentication:
 
 #LoginGraceTime 2m
+# DO NOT ALLOW ROOT LOGIN VIA SSH
+PermitRootLogin no
 #PermitRootLogin prohibit-password
 #StrictModes yes
+# LOWER MAX LOGIN ATTEMPTS AND THE NUMBER OF OPEN SESSIONS
+MaxAuthTries 3
+MaxSessions 5
 #MaxAuthTries 6
 #MaxSessions 10
 
@@ -55,7 +62,9 @@ Include /etc/ssh/sshd_config.d/*.conf
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
+# DONT ALLOW LOGIN VIA PASSWORD
 PasswordAuthentication no
+#PasswordAuthentication yes
 #PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
@@ -121,3 +130,7 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+# ONLY ALLOW SPECIFIC USERS TO LOGIN REMOTELY
+AllowUsers user1
+# CREATE SSH GROUP AND ONLY ALLOW USERS OF THE GROUP TO LOGIN REMOTELY
+AllowGroups ssh
